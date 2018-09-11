@@ -11,4 +11,6 @@ class Config():
 class HostDB():
     client = MongoClient(Config.MONGODB)
     db = client.aperture
-    INFO = db.nodes.find_one({}, { '_id': False })
+
+    def get_hosts():
+        return db.nodes.find_one({}, { '_id': False })

@@ -23,7 +23,7 @@ def _request(method, endpoint, data=None):
     return
 
 def get_vms():
-    return HostDB.INFO
+    return HostDB.get_hosts()
 
 def restart(vm):
     return _request('POST', f'vms/{vm}/restart')
