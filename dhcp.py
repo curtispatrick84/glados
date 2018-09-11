@@ -11,7 +11,7 @@ def update_reservation(vm, ip, mac):
 
     newfile = '\n'.join(file)
 
-    container.exec_run('sh', '-c', f'echo -e {newfile} > /etc/dhcp/dhcpd.conf')
+    container.exec_run(['sh', '-c', f'echo -e {newfile} > /etc/dhcp/dhcpd.conf'])
     container.restart()
 
     return { 'success': True }
