@@ -6,7 +6,7 @@ import json
 
 from fusion import get_vms, restart
 from pxe import set_pxe_config
-from docker import clean_puppet_cert
+from puppet import clean_puppet_cert
 
 @hug.get('/vms')
 def list_vms():
@@ -19,7 +19,7 @@ def restart_vm(vm):
 
 
 @hug.post('/vms/{vm}/clean_cert')
-def restart_vm(vm):
+def clean_cert(vm):
     return clean_puppet_cert(vm)
 
 
