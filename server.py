@@ -7,10 +7,18 @@ import json
 from fusion import get_vms, restart
 from pxe import set_pxe_config
 from puppet import clean_puppet_cert
+from mq import publish
 
 @hug.get('/vms')
 def list_vms():
     return get_vms()
+
+
+@hug.post('/vms/{vm}/status')
+def restart_vm(vm, body):
+    if body is not None and body.get('status') is not None:
+        publish(body)
+        return body
 
 
 @hug.post('/vms/{vm}/restart')
@@ -25,7 +33,6 @@ def clean_cert(vm):
 
 @hug.post('/vms/{vm}/pxe_setup')
 def set_pxe(vm, body, response=None):
-    print(vm, body)
     if body is not None and body.get('os') is not None:
         return set_pxe_config(vm, body.get('os'))
 
