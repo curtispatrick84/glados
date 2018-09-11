@@ -4,13 +4,14 @@ import requests
 from config import Config, HostDB
 
 def set_pxe_config(host, os):
+    hosts = HostDB.get_hosts()
     r = requests.post(
         url=f"http://{Config.PXE_SERVER_URL}/pxeconfig",
         headers={
             "Content-Type": "application/json"
         },
         json={
-            "mac": HostDB.INFO.get(host)['mac'],
+            "mac": hosts.get(host)['mac'],
             "os": os
         }
     )
