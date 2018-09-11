@@ -7,7 +7,7 @@ def update_reservation(vm, ip, mac):
     output = container.exec_run(f'cat /etc/dhcp/dhcpd.conf')
 
     file = output.output.decode('utf-8').splitlines()
-    file.insert(14, f'    host {vm} { hardware ethernet {mac}; fixed-address {ip}; }')
+    file.insert(14, f'    host {vm} {{ hardware ethernet {mac}; fixed-address {ip}; }}')
 
     newfile = '\n'.join(file)
 
