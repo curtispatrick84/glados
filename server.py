@@ -15,8 +15,9 @@ def list_vms():
 
 
 @hug.post('/vms/{vm}/status')
-def restart_vm(vm, body):
+def publish_status(vm, body):
     if body is not None and body.get('status') is not None:
+        body['host'] = vm
         publish(body)
         return body
 
