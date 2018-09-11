@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/usr/bin/python -u /GLaDOS/server.py
+python -u /GLaDOS/server.py
