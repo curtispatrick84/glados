@@ -9,8 +9,7 @@ class Config():
     MONGODB = os.environ.get('MONGODB_SERVER', '10.0.0.2')
 
 class HostDB():
-    client = MongoClient(Config.MONGODB)
-    db = client.aperture
-
     def get_hosts():
+        client = MongoClient(Config.MONGODB)
+        db = client.aperture
         return db.nodes.find_one({}, { '_id': False })
