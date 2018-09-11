@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt --pre
 COPY . /GLaDOS
 
 EXPOSE 8080
-CMD ['python', '-u', 'server.py']
+CMD ['/usr/bin/python', '-u', 'server.py']

@@ -1,7 +1,7 @@
 import os
 
 class Config():
-    FUSION_AUTH = os.environ.get('AUTH')
+    # FUSION_AUTH = os.environ.get('AUTH')
     FUSION_URL = os.environ.get('FUSION_API_URL')
 
     PXE_SERVER_URL = os.environ.get('PXE_SERVER', '127.0.0.1:8069')
