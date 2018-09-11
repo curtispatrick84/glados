@@ -2,4 +2,5 @@ docker
 falcon
 hug
 pika
+pymongo
 requests
