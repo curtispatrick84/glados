@@ -1,2 +1,2 @@
-# GLaDOS Backend
+# GLaDOS
 Assimilation orchestration
