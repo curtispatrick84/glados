@@ -3,12 +3,13 @@ import hug
 import falcon
 import logging
 import json
+from pymongo import MongoClient
 
 from fusion import get_vms, restart
 from pxe import set_pxe_config
 from puppet import clean_puppet_cert
 from mq import publish
-from config import HostDB
+from config import Config, HostDB
 
 @hug.get('/vms')
 def list_vms():
@@ -45,8 +46,8 @@ def set_pxe(vm, body, response=None):
 @hug.post('/vms/{vm}')
 def add_vm(vm, body):
     if body is not None and body.get('mac') is not None and body.get('ip') is not None:
-        db = HostDB.db
-        print(body)
+        client = MongoClient(Config.MONGODB)
+        db = client.aperture
         db.nodes.update_one({}, { '$set': { vm: body } })
         return { 'success': True }
 
