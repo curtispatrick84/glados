@@ -9,6 +9,8 @@ from fusion import get_vms, restart
 from pxe import set_pxe_config
 from puppet import clean_puppet_cert
 from mq import publish
+from dhcp import update_reservation
+
 from config import Config, HostDB
 
 @hug.get('/vms')
@@ -49,6 +51,7 @@ def add_vm(vm, body):
         client = MongoClient(Config.MONGODB)
         db = client.aperture
         db.nodes.update_one({}, { '$set': { vm: body } })
+        update_reservation(vm, body.get('ip'), body.get('mac'))
         return { 'success': True }
 
 
